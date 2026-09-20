@@ -2,6 +2,28 @@
 
 โมดูลนี้ปูพื้นฐานให้ผู้เริ่มต้นเข้าใจแนวคิดของ Databricks Lakehouse และวิธีใช้งาน SQL Warehouse ก่อนเริ่มเขียน SQL จริงในโมดูลถัดไป
 
+---
+
+## 🚀 การเริ่มต้นใช้งาน Databricks (Account & Workspace Setup)
+
+1. **สมัคร/เข้าสู่ระบบ Databricks Account:**
+   - ลงทะเบียนใช้งานได้ที่ [https://www.databricks.com/learn/free-edition](https://www.databricks.com/learn/free-edition)
+2. **สร้าง Workspace (Serverless):**
+   - **Workspace Name:** `Demo`
+   - **Region:** `Singapore`
+   - **Storage and compute:** `Serverless`
+3. **เปิดใช้งาน Workspace:**
+   - กดคลิกเปิด Workspace ที่สร้างไว้เพื่อเข้าสู่ Databricks Console
+4. **เปิด SQL Editor และรัน Query แรก:**
+   - ไปที่เมนู **SQL Editor** > **New SQL Query**
+   - พิมพ์คำสั่ง SQL ทดสอบ:
+     ```sql
+     SELECT * FROM samples.bakehouse.sales_customers;
+     ```
+   - กด **Run** (หรือใช้คีย์ลัด `Cmd/Ctrl + Enter`) เพื่อดูผลลัพธ์
+
+---
+
 ## 1. Lakehouse Concept
 
 **Lakehouse คืออะไร**
@@ -24,11 +46,13 @@ Lakehouse คือสถาปัตยกรรมที่รวมข้อ�
 - สามารถเปิด/ปิด หรือปรับขนาด Compute (เช่น SQL Warehouse) ตามการใช้งานจริง โดยข้อมูลใน Storage ไม่หายไปไหน
 - หลาย ๆ Compute (SQL Warehouse, Cluster สำหรับ Python/Spark) สามารถเข้าถึงข้อมูลชุดเดียวกันได้พร้อมกัน
 
+---
+
 ## 2. 3-Level Namespace (Unity Catalog)
 
 Unity Catalog คือระบบจัดการ Metadata และสิทธิ์การเข้าถึงข้อมูลของ Databricks ที่ทำให้การอ้างอิงตารางเป็นแบบ 3 ระดับ (3-Level Namespace):
 
-```
+```text
 catalog.schema.table
 ```
 
@@ -39,8 +63,8 @@ catalog.schema.table
 ตัวอย่างการอ้างอิงตาราง:
 
 ```sql
-select *
-from samples.bakehouse.sales_customers;
+SELECT *
+FROM samples.bakehouse.sales_customers;
 ```
 
 จากตัวอย่างข้างต้น:
@@ -52,6 +76,8 @@ from samples.bakehouse.sales_customers;
 - แยกสิทธิ์การเข้าถึงข้อมูลได้ละเอียดในแต่ละระดับ (catalog / schema / table)
 - ค้นหาและจัดระเบียบข้อมูลได้ง่ายขึ้นเมื่อมีหลายทีมใช้งานร่วมกัน
 - หลีกเลี่ยงชื่อตารางชนกันระหว่างโปรเจกต์หรือทีมต่าง ๆ
+
+---
 
 ## 3. SQL Warehouse เบื้องต้น
 
@@ -77,6 +103,8 @@ SQL Warehouse คือ Compute ที่ใช้สำหรับรัน Qu
 - ช่วยลดค่าใช้จ่ายโดยไม่ต้องคอยปิด Warehouse ด้วยตนเองทุกครั้ง
 - ควรตั้งค่า Auto-stop ให้เหมาะสมกับพฤติกรรมการใช้งานจริง เช่น ตั้งเวลาสั้นสำหรับ Warehouse ที่ใช้ทดสอบหรือเรียนรู้
 
+---
+
 ## 4. UI Walkthrough
 
 **SQL Editor**
@@ -98,16 +126,19 @@ SQL Warehouse คือ Compute ที่ใช้สำหรับรัน Qu
 3. เขียน Query โดยอ้างอิงตารางแบบ 3-Level Namespace เช่น:
 
     ```sql
-    select *
-    from samples.bakehouse.sales_customers
-    limit 10;
+    SELECT *
+    FROM samples.bakehouse.sales_customers
+    LIMIT 10;
     ```
 
 4. กด **Run** (หรือ `Cmd/Ctrl + Enter`) เพื่อรัน Query และดูผลลัพธ์ด้านล่าง
 
+---
+
 ## สรุป
 
 หลังจบโมดูลนี้ ผู้เรียนควรเข้าใจ:
+- ขั้นตอนการสมัครและเตรียม Databricks Serverless Workspace (`Demo`, Region: `Singapore`)
 - แนวคิด Lakehouse และความแตกต่างจาก RDBMS ดั้งเดิม
 - การอ้างอิงตารางด้วย 3-Level Namespace ผ่าน Unity Catalog
 - ชนิดของ SQL Warehouse และวิธีจัดการเพื่อควบคุมต้นทุน
