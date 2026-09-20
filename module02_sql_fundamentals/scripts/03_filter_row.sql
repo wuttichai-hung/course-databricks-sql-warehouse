@@ -1,15 +1,12 @@
+-- DQL: Filtering rows using WHERE clause
 SELECT
     customerID,
     first_name,
     last_name,
-    gender,
-    email_address,
-    city,
     country,
-    continent
+    city
 FROM
     samples.bakehouse.sales_customers
 WHERE
-    gender = 'female'
-    AND country IN ('Japan', 'USA')
-    AND email_address LIKE '%@example.com'
+    country IN ('Japan', 'USA')
+    AND gender = 'female';

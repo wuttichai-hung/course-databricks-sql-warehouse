@@ -1,17 +1,12 @@
+-- DQL: Sorting rows with ORDER BY and limiting results
 SELECT
+    transactionID,
     customerID,
-    first_name,
-    last_name,
-    gender,
-    email_address,
-    city,
-    country,
-    continent
+    dateTime,
+    product,
+    totalPrice
 FROM
-    samples.bakehouse.sales_customers
-WHERE
-    gender = 'female'
-    AND country IN ('Japan', 'USA')
-    AND email_address LIKE '%@example.com'
+    samples.bakehouse.sales_transactions
 ORDER BY
-    customerID ASC;
+    totalPrice DESC
+LIMIT 20;

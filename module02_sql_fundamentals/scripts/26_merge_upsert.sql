@@ -1,8 +1,9 @@
--- Module 02: MERGE INTO (Upsert Logic on Delta Lake)
--- Atomically UPDATE existing matching records and INSERT new records
+-- Module 02: DML - MERGE INTO (Atomic Upsert on Delta Lake)
+
+CREATE SCHEMA IF NOT EXISTS demo.bakehouse;
 
 -- 1. Create target table
-CREATE OR REPLACE TABLE default.target_suppliers AS
+CREATE OR REPLACE TABLE demo.bakehouse.target_suppliers AS
 SELECT
     supplierID,
     name,
@@ -12,8 +13,8 @@ SELECT
 FROM
     samples.bakehouse.sales_suppliers;
 
--- 2. Execute MERGE INTO to update status or insert new supplier
-MERGE INTO default.target_suppliers AS target
+-- 2. Execute MERGE INTO to update existing supplier or insert new supplier
+MERGE INTO demo.bakehouse.target_suppliers AS target
 USING (
     SELECT 
         1 AS supplierID, 
@@ -31,5 +32,5 @@ WHEN NOT MATCHED THEN
     INSERT (supplierID, name, ingredient, city, approved)
     VALUES (source.supplierID, source.name, source.ingredient, source.city, source.approved);
 
--- Cleanup
-DROP TABLE IF EXISTS default.target_suppliers;
+-- 3. Drop temporary table cleanup
+DROP TABLE IF EXISTS demo.bakehouse.target_suppliers;

@@ -1,3 +1,4 @@
+-- DQL: Selecting specific columns
 SELECT
     customerID,
     first_name,

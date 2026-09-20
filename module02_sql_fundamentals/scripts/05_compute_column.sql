@@ -1,6 +1,7 @@
+-- DQL: Column Expressions & Computed Fields
 SELECT
     customerID,
-    CONCAT (first_name, ' ', last_name) AS full_name,
+    CONCAT(first_name, ' ', last_name) AS full_name,
     gender,
     email_address,
     city,

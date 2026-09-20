@@ -1,4 +1,5 @@
-select
+-- DQL: Explore customer data
+SELECT
     *
-from
+FROM
     samples.bakehouse.sales_customers;

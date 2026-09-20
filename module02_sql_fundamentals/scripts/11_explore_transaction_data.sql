@@ -1,6 +1,5 @@
+-- DQL: Explore transaction table
 SELECT
     *
 FROM
-    samples.bakehouse.sales_transactions
-ORDER BY
-    totalPrice DESC;
+    samples.bakehouse.sales_transactions;

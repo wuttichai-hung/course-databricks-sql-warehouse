@@ -1,3 +1,4 @@
+-- DQL: Filtering aggregated results using HAVING clause
 SELECT
     product,
     COUNT(transactionID) AS total_orders,
@@ -8,6 +9,6 @@ FROM
 GROUP BY
     product
 HAVING
-    total_revenue > 11000
+    SUM(totalPrice) > 5000
 ORDER BY
     total_revenue DESC;
